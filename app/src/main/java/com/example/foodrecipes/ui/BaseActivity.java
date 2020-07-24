@@ -1,4 +1,4 @@
-package com.example.foodrecipes;
+package com.example.foodrecipes.ui;
 
 import android.view.View;
 import android.widget.FrameLayout;
@@ -7,11 +7,13 @@ import android.widget.ProgressBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.foodrecipes.R;
+
 //abstract disables the class to be instantiated only through extends
 public abstract class BaseActivity extends AppCompatActivity {
 
     //To re-use the ProgressBar in all the extended activities
-    private ProgressBar mProgressBar;
+    ProgressBar mProgressBar;
 
     @Override
     public void setContentView(int layoutResID) {
@@ -22,7 +24,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         //associate the frame layout with the BaseActivity, so the frame layout acts as a container for any activity that extends BaseActivity
         getLayoutInflater().inflate(layoutResID, frameLayout, true);
 
-        super.setContentView(layoutResID);
+        super.setContentView(constraintLayout);
     }
 
     public void showProgressBar(boolean visibility) {
