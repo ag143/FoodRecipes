@@ -114,7 +114,6 @@ public class RecipeListActivity extends BaseActivity {
         });
     }
 
-    //TODO: NEXT CHAPTER -> 13
 }
 
 
