@@ -1,7 +1,9 @@
 package com.example.foodrecipes.ui;
 
 import android.os.Bundle;
+import android.util.Log;
 
+import androidx.appcompat.widget.SearchView;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -36,7 +38,7 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
 
         initRecyclerView();
         subscribeObservers();
-        testRetrofitRequest();
+        initSearchView();
     }
 
     private void subscribeObservers() {
@@ -45,8 +47,8 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
             public void onChanged(List<Recipe> recipes) {
                 if (recipes != null) {
                     Testing.printRecipes(recipes, "recipes test");
-                    mAdapter.setRecipes(recipes);
                 }
+                mAdapter.setRecipes(recipes);
             }
         });
     }
@@ -57,13 +59,27 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
         mRecyclerView.setAdapter(mAdapter);
     }
 
-    private void testRetrofitRequest() {
-        mRecipeListViewModel.searchRecipesApi("chicken", 1);
+    private void initSearchView() {
+        final SearchView searchView = findViewById(R.id.search_view);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
+                // Search the database for a recipe
+                mRecipeListViewModel.searchRecipesApi(s, 1);
+
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
+                return false;
+            }
+        });
     }
 
     @Override
     public void onRecipeClick(int position) {
-
+        Log.d(TAG, "onRecipeClick: clicked. " + position);
     }
 
     @Override
