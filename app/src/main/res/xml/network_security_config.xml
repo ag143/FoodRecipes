@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- In order to process HTTP requests from site -->
+<network-security-config>
+    <domain-config cleartextTrafficPermitted="true">
+        <domain includeSubdomains="true">
+            <!-- static.website_name.com -->
+        </domain>
+    </domain-config>
+</network-security-config>
