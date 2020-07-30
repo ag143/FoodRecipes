@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.foodrecipes.R;
 import com.example.foodrecipes.models.Recipe;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
@@ -21,6 +22,7 @@ public class RecipeRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     public RecipeRecyclerAdapter(OnRecipeListener mOnRecipeListener) {
         this.mOnRecipeListener = mOnRecipeListener;
+        mRecipes = new ArrayList<>();
     }
 
     @NonNull
