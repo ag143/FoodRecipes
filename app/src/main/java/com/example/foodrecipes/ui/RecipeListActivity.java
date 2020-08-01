@@ -2,8 +2,12 @@ package com.example.foodrecipes.ui;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -45,6 +49,8 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
             // display search categories
             displaySearchCategories();
         }
+
+        setSupportActionBar((Toolbar)findViewById(R.id.toolbar));
     }
 
     private void subscribeObservers() {
@@ -113,6 +119,20 @@ public class RecipeListActivity extends BaseActivity implements OnRecipeListener
         } else {
             displaySearchCategories();
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.recipe_search_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_categories) {
+            displaySearchCategories();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
