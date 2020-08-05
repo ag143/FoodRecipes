@@ -88,7 +88,6 @@ public class RecipeApiClient {
         AppExecutors.getInstance().getNetworkIO().schedule(new Runnable() {
             @Override
             public void run() {
-                // let user know it's timed out
                 mRecipeRequestTimeout.postValue(true);
                 handler.cancel(true);
             }
